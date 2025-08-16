@@ -1,5 +1,5 @@
 {
-  "_configVersion": "v1.0.0-alpha", // DO NOT TOUCH
+  "_configVersion": "v1.0-beta", // DO NOT TOUCH
   "Activators": {
     "officeohook":{
       "File": "Ohook_Activation.cmd",
