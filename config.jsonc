@@ -1,5 +1,5 @@
 {
-  "_configVersion": "v1.0-beta.1", // DO NOT TOUCH
+  "_configVersion": "v1.0-beta.2", // DO NOT TOUCH
   "Activators": {
     "officeohook":{
       "File": "Ohook_Activation.cmd",
@@ -18,8 +18,8 @@
       "Name": "WinRAR"
     }
   },
-  "DefaultActivationTimeout": 180,
-  "DefaultInstallationTimeout": 240,
+  "DefaultActivationTimeout": 300,
+  "DefaultInstallationTimeout": 600,
   "DisableBing": {
     "BlockSearchApp": true,
     "DisableCortana": true

@@ -223,15 +223,15 @@ function Invoke-OfficeInstallation {
   $installerFile = $installerInfo.File -replace "\[LANG\]", $Language
   $params = @{
     Path = Join-Path (Join-Path $WorkingDirectory "installers") $installerFile
-    Timeout = 360
+    Timeout = $config.DefaultInstallationTimeout
     Arguments = $installerInfo.Args -replace "\[CONFIG\]", $configFile
   }
   Write-ParameterSummary -Title "Start-Installation" -Parameters $params
   if (-not $Developer) {
     if (& Start-Installation @params -FreezeWarning -NoNewWindow) {
+      Start-Sleep -Seconds 3
       if ($OrganizeShortcuts) {
         Write-Host "Organizing start menu shortcuts..."
-        Start-Sleep -Seconds 3
         $officeFolder = Join-Path $systemDir.StartMenu "Microsoft Office"
         New-Item -Path $officeFolder -ItemType Directory -Force
         $officeShortcuts = @("Access", "Excel", "OneNote", "PowerPoint", "Publisher", "Word")
