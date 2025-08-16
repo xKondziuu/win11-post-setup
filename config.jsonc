@@ -18,8 +18,8 @@
       "Name": "WinRAR"
     }
   },
-  "DefaultActivationTimeout": 300,
-  "DefaultInstallationTimeout": 600,
+  "DefaultActivationTimeout": 360,
+  "DefaultInstallationTimeout": 660,
   "DisableBing": {
     "BlockSearchApp": true,
     "DisableCortana": true
