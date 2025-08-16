@@ -246,7 +246,14 @@ function Invoke-OfficeInstallation {
       }
       if ($RemoveToolsFolder) {
         Write-Host "Removing Microsoft Office Tools folder"
-        $officeTools = Join-Path $systemDir.StartMenu "Microsoft Office Tools"
+        $officeToolsName = if ($Language -eq "en") { 
+          "Microsoft Office Tools"
+        } elseif ($Language -eq "de") {
+          "Microsoft Office-Tools"
+        } elseif ($Language -eq "pl") { 
+          "Narzędzia pakietu Microsoft Office"
+        }
+        $officeTools = Join-Path $systemDir.StartMenu $officeToolsName
         if (Test-Path $officeTools) {
           Remove-Item -Path $officeTools -Recurse -Force
         }
