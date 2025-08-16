@@ -142,7 +142,7 @@
                                    TextAlignment="Left"
                                    Margin="0,0,0,5" />
                         <CheckBox Name="activateOfficeOhook"
-                                  Content="Office 2024 (Ohook)"
+                                  Content="Office 2021 (Ohook)"
                                   Foreground="Black"
                                   Margin="0,10"
                                   FontSize="14"
