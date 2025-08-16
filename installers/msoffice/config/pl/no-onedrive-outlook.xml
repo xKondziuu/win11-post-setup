@@ -1,0 +1,19 @@
+<Configuration ID="81ec405b-a7da-48a3-879c-297baf4c8a93">
+  <Add OfficeClientEdition="64" Channel="PerpetualVL2021">
+    <Product ID="ProPlus2021Volume" PIDKEY="FXYTK-NJJ8C-GB6DW-3DYQT-6F7TH">
+      <Language ID="pl-pl" />
+      <ExcludeApp ID="Lync" />
+      <ExcludeApp ID="OneDrive" />
+      <ExcludeApp ID="Outlook" />
+    </Product>
+  </Add>
+  <Property Name="AUTOACTIVATE" Value="0" />
+  <Property Name="DeviceBasedLicensing" Value="0" />
+  <Property Name="FORCEAPPSHUTDOWN" Value="TRUE" />
+  <Property Name="ForceCloseApps" Value="TRUE" />
+  <Property Name="SCLCacheOverride" Value="0" />
+  <Property Name="SharedComputerLicensing" Value="0" />
+  <Updates Enabled="FALSE" />
+  <RemoveMSI />
+  <Display Level="None" AcceptEULA="TRUE" />
+</Configuration>

@@ -1,0 +1,252 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        Title="Windows 11 Post-Setup Wizard"
+        Topmost="True"
+        ResizeMode="NoResize"
+        AllowsTransparency="False"
+        UseLayoutRounding="True"
+        ForceCursor="True"
+        WindowStartupLocation="CenterScreen"
+        Width="800"
+        Height="600">
+    <Border Name="MainUI"
+            Width="800"
+            Height="570"
+            Padding="10"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+        <Grid>
+                <TextBlock Name="textVersion"
+                   Foreground="#CCCCCC"
+                   FontSize="12"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Bottom"
+                   Margin="5,0,0,0" />
+            <StackPanel Name="MainContent"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <Border HorizontalAlignment="Center">
+                    <StackPanel>
+                        <TextBlock Text="Windows 11 Post-Setup Wizard"
+                                   Foreground="Black"
+                                   FontSize="34"
+                                   FontWeight="Bold"
+                                   TextAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,2" />
+                        <TextBlock Text="Konrad S.K."
+                                   Foreground="Black"
+                                   FontSize="16"
+                                   FontWeight="Bold"
+                                   TextAlignment="Right"
+                                   HorizontalAlignment="Right" />
+                    </StackPanel>
+                </Border>
+                <TextBlock Name="textDescription"
+                           Foreground="Black"
+                           FontSize="16"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           Margin="0,35,0,35" />
+                <Grid Margin="0,0,0,30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0"
+                                Orientation="Vertical"
+                                Margin="30,0"
+                                HorizontalAlignment="Stretch">
+                        <TextBlock Name="textDisable"
+                                   Foreground="Black"
+                                   FontSize="24"
+                                   FontWeight="SemiBold"
+                                   TextAlignment="Left"
+                                   Margin="0,0,0,5" />
+                        <CheckBox Name="disableHistory"
+                                  Foreground="Black"
+                                  Margin="0,10"
+                                  FontSize="14"
+                                  IsChecked="True" />
+                        <CheckBox Name="disableBing"
+                                  Foreground="Black"
+                                  Margin="0,10"
+                                  FontSize="14"
+                                  IsChecked="True" />
+                        <CheckBox Name="disableOnedrive"
+                                  Content="Microsoft Onedrive"
+                                  Foreground="Black"
+                                  Margin="0,10"
+                                  FontSize="14"
+                                  IsChecked="True" />
+                        <CheckBox Name="disableOutlook"
+                                  Content="Microsoft Outlook"
+                                  Foreground="Black"
+                                  Margin="0,10"
+                                  FontSize="14"
+                                  IsEnabled="False" />
+                        <CheckBox Name="disableHibernation"
+                                  Foreground="Black"
+                                  Margin="0,10"
+                                  FontSize="14" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1"
+                                Orientation="Vertical"
+                                Margin="30,0"
+                                HorizontalAlignment="Stretch">
+                        <TextBlock Name="textInstall"
+                                   Foreground="Black"
+                                   FontSize="24"
+                                   FontWeight="SemiBold"
+                                   TextAlignment="Left"
+                                   Margin="0,0,0,5" />
+                        <CheckBox Name="installChrome"
+                                  Content="Google Chrome"
+                                  Foreground="Black"
+                                  Margin="0,10"
+                                  FontSize="14" />
+                        <CheckBox Name="installFirefox"
+                                  Content="Mozilla Firefox"
+                                  Foreground="Black"
+                                  Margin="0,10"
+                                  FontSize="14" />
+                        <CheckBox Name="installOffice"
+                                  Content="Microsoft Office 2021"
+                                  Foreground="Black"
+                                  Margin="0,10"
+                                  FontSize="14" />
+                        <CheckBox Name="installPowertoys"
+                                  Content="Microsoft PowerToys"
+                                  Foreground="Black"
+                                  Margin="0,10"
+                                  FontSize="14" />
+                        <CheckBox Name="installSumatra"
+                                  Content="Sumatra PDF"
+                                  Foreground="Black"
+                                  Margin="0,10"
+                                  FontSize="14" />
+                        <CheckBox Name="installWinrar"
+                                  Content="WinRAR 7.13"
+                                  Foreground="Black"
+                                  Margin="0,10"
+                                  FontSize="14" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="2"
+                                Orientation="Vertical"
+                                Margin="30,0"
+                                HorizontalAlignment="Stretch">
+                        <TextBlock Name="textActivate"
+                                   Foreground="Black"
+                                   FontSize="24"
+                                   FontWeight="SemiBold"
+                                   TextAlignment="Left"
+                                   Margin="0,0,0,5" />
+                        <CheckBox Name="activateOfficeOhook"
+                                  Content="Office 2024 (Ohook)"
+                                  Foreground="Black"
+                                  Margin="0,10"
+                                  FontSize="14"
+                                  IsEnabled="False" />
+                        <CheckBox Name="activateWindowsHwid"
+                                  Content="Windows (HWID)"
+                                  Foreground="Black"
+                                  Margin="0,10"
+                                  FontSize="14"
+                                  IsChecked="True" />
+                        <CheckBox Name="activateWindowsTsforge"
+                                  Content="Windows (TSforge)"
+                                  Foreground="Black"
+                                  Margin="0,10"
+                                  FontSize="14"
+                                  IsEnabled="False" />
+                        <CheckBox Name="activateWinrar"
+                                  Content="WinRAR (rarreg.key)"
+                                  Foreground="Black"
+                                  Margin="0,10"
+                                  FontSize="14"
+                                  IsEnabled="False" />
+                    </StackPanel>
+                </Grid>
+                <Button Name="executeButton"
+                        Width="120"
+                        Height="32"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="Black"
+                        HorizontalAlignment="Center"
+                        Background="#F0F0F0"
+                        BorderBrush="#A0A0A0"
+                        BorderThickness="1"
+                        Padding="6,2"
+                        IsDefault="True">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Name="border"
+                                    Background="#F0F0F0"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="6">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  Margin="{TemplateBinding Padding}" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Setter TargetName="border"
+                                            Property="Background"
+                                            Value="#E5F1FB" />
+                                    <Setter TargetName="border"
+                                            Property="BorderBrush"
+                                            Value="#0078D7" />
+                                    <Setter TargetName="border"
+                                            Property="BorderThickness"
+                                            Value="1" />
+                                </Trigger>
+                                <Trigger Property="IsPressed"
+                                         Value="True">
+                                    <Setter TargetName="border"
+                                            Property="Background"
+                                            Value="#D2E6F7" />
+                                    <Setter TargetName="border"
+                                            Property="BorderBrush"
+                                            Value="#005A9E" />
+                                </Trigger>
+                                <Trigger Property="IsFocused"
+                                         Value="True">
+                                    <Setter TargetName="border"
+                                            Property="BorderBrush"
+                                            Value="#0078D7" />
+                                    <Setter TargetName="border"
+                                            Property="BorderThickness"
+                                            Value="2" />
+                                </Trigger>
+                                <Trigger Property="IsDefaulted"
+                                         Value="True">
+                                    <Setter TargetName="border"
+                                            Property="BorderBrush"
+                                            Value="#0078D7" />
+                                    <Setter TargetName="border"
+                                            Property="BorderThickness"
+                                            Value="1" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled"
+                                         Value="False">
+                                    <Setter TargetName="border"
+                                            Property="Opacity"
+                                            Value="0.5" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <CheckBox Name="clearFiles"
+                          Foreground="Black"
+                          Margin="0,14,0,0"
+                          FontSize="12"
+                          HorizontalAlignment="Center"
+                          IsChecked="True" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

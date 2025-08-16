@@ -1,0 +1,27 @@
+# Binaries
+*.bin
+*.class
+*.dll
+*.dylib
+*.exe
+*.jar
+*.lib
+*.obj
+*.pdb
+*.so
+*.war
+
+# Archives
+*.zip
+*.tar
+*.gz
+*.7z
+*.rar
+
+# Installers
+*.msi
+
+# Activators
+*.bat
+*.cmd
+*.key

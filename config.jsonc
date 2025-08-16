@@ -1,0 +1,78 @@
+{
+  "_configVersion": "v1.0-beta", // DO NOT TOUCH
+  "Activators": {
+    "officeohook":{
+      "File": "Ohook_Activation.cmd",
+      "Name": "Microsoft Office 2021"
+    },
+    "windowshwid": {
+      "File": "HWID_Activation.cmd",
+      "Name": "Windows (HWID)"
+    },
+    "windowstsforge": {
+      "File": "Tsforge_Activation.cmd",
+      "Name": "Windows (Tsforge)"
+    },
+    "winraractivator": {
+      "File": "winrar/activate.cmd",
+      "Name": "WinRAR"
+    }
+  },
+  "DefaultActivationTimeout": 180,
+  "DefaultInstallationTimeout": 240,
+  "DisableBing": {
+    "BlockSearchApp": true,
+    "DisableCortana": true
+  },
+  "DisableHistory": {
+    "DisableActivityFeed": true
+  },
+  "DisableOnedrive": {
+    "RemoveForNewUsers": true,
+    "RemoveFromSidebar": true
+  },
+  "ForcePolishKeyboard": {
+    "DisableLanguageBar": true
+  },
+  "InstallOffice": {
+    "OrganizeShortcuts": true,
+    "RemoveToolsFolder": true
+  },
+  "InstallWinrar": {
+    "OrganizeShortcuts": true
+  },
+  "Installers": {
+    "chrome": {
+      "Args": "/quiet /norestart",
+      "File": "GoogleChromeStandaloneEnterprise64.msi",
+      "Name": "Google Chrome"
+    },
+    "firefox": {
+      "Args": "/S",
+      "File": "firefox/Firefox_Setup_141.0.3_[LANG].exe",
+      "Name": "Mozilla Firefox"
+    },
+    "msoffice": {
+      "Args": "/configure [CONFIG]",
+      "File": "msoffice/setup.exe",
+      "Name": "Microsoft Office 2021"
+    },
+    "powertoys": {
+      "Args": "/silent",
+      "File": "powertoys/Microsoft_PowerToys_0.92.1_User_x64_[LANG].exe",
+      "Name": "Microsoft PowerToys"
+    },
+    "sumatra": {
+      "Args": "-install -silent",
+      "File": "SumatraPDF-3.5.2-64-install.exe",
+      "Name": "Sumatra PDF"
+    },
+    "winrar": {
+      "Args": "/S",
+      "File": "winrar/winrar-x64-713_[LANG].exe",
+      "Name": "WinRAR"
+    }
+  },
+  "KeepOpen": false,
+  "RestartSystem": true
+}
