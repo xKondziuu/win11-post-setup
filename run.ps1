@@ -248,8 +248,6 @@ function Invoke-OfficeInstallation {
           $officeShortcuts += "Outlook"
         }
         Start-Sleep -Seconds 1
-        Write-Host "D E B U G"
-        Write-Host $officeFolder
         foreach ($s in $officeShortcuts) {
           $src = Join-Path $systemDir.StartMenu "$s.lnk"
           $dst = Join-Path $officeFolder "$s.lnk"
@@ -268,8 +266,6 @@ function Invoke-OfficeInstallation {
           "Narz$([char]0x119)dzia pakietu Microsoft Office"
         }
         $officeTools = Join-Path $systemDir.StartMenu $officeToolsName
-        Write-Host "D E B U G"
-        Write-Host $officeTools
         if (Test-Path $officeTools) {
           Remove-Item -Path $officeTools -Recurse -Force
         }
@@ -522,14 +518,20 @@ if (-not $Developer) {
     $cmds += "cd .."
     $cmds += "rd /s /q `"$PSScriptRoot`""
   }
-  if ($config.RestartSystem) {
+  if ($config.RestartSystem.Enabled) {
     $cmds += "echo Restarting system..."
-    $cmds += "shutdown /r /t 5 /c `" `""
+    $cmds += "shutdown /r /t $($config.RestartSystem.Timeout + 1) /c `" `""
   }
   if ($cmds.Count -gt 0) {
     $cmds += "timeout /t 2 /nobreak >nul"
-    $cmds += "echo Done!"
-    $cmds += "exit /b 0"
+    if ($config.Cleanup.KeepCleanupConsoleOpen) {
+      $cmds += "echo WARNING: Option `"Cleanup.KeepCleanupConsoleOpen`" is enabled, keeping the console open."
+      $cmds += "echo Press any key to close . . ."
+      $cmds += "pause > nul"
+      $cmds += "exit /b 0"
+    } else {
+      $cmds += "exit /b 0"
+    }
     Start-Process cmd.exe "/c $($cmds -join ' & ')"
   } else {
     Write-Host "No cleanup required, exiting."
@@ -543,16 +545,18 @@ if (-not $Developer) {
   }
 
   # Restart Explorer
-  Start-Sleep -Seconds 1
-  Stop-Process -Name explorer -Force
+  if ($config.Cleanup.AlwaysRestartExplorer) {
+    Start-Sleep -Seconds 1
+    Stop-Process -Name explorer -Force
+  }
 
 }
 
-if ($Developer -or $config.KeepOpen) {
+if ($Developer -or $config.Cleanup.KeepMainConsoleOpen) {
   if ($Developer) {
     Write-Warning "Developer mode is enabled, keeping the console open."
   } else {
-    Write-Warning "Option 'KeepOpen' is enabled, keeping the console open."
+    Write-Warning "Option `"Cleanup.KeepMainConsoleOpen`" is enabled, keeping the console open."
   }
   Write-Host "Press any key to close . . ." -NoNewline
   [void][System.Console]::ReadKey($true)

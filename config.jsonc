@@ -1,5 +1,5 @@
 {
-  "_configVersion": "v1.0-beta.3", // DO NOT TOUCH
+  "_configVersion": "v1.0-beta.4", // DO NOT TOUCH
   "Activators": {
     "officeohook":{
       "File": "Ohook_Activation.cmd",
@@ -16,6 +16,16 @@
     "winraractivator": {
       "File": "winrar/activate.cmd",
       "Name": "WinRAR"
+    }
+  },
+  "Cleanup": {
+    "AlwaysRestartExplorer": true,
+    "KeepMainConsoleOpen": false,
+    "KeepCleanupConsoleOpen": false,
+    "RemoveRecentItems": true,
+    "RestartSystem": {
+      "Enabled": true,
+      "Timeout": 3
     }
   },
   "DefaultActivationTimeout": 360,
@@ -72,8 +82,5 @@
       "File": "winrar/winrar-x64-713_[LANG].exe",
       "Name": "WinRAR"
     }
-  },
-  "KeepOpen": true,
-  "RemoveRecentItems": true,
-  "RestartSystem": false
+  }
 }
