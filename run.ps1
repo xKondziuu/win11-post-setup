@@ -24,11 +24,19 @@ if ($PSVersionTable.PSVersion.Major -lt 5) {
 }
 
 # Ensure the script is running as administrator
-if (-not $Developer -and -not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+if (-not $Developer -and -not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()
+).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
   Write-Warning "This script must be run as Administrator. Restarting with elevated privileges..."
+  $allArgs = @()
+  foreach ($kvp in $PSBoundParameters.GetEnumerator()) {
+    $allArgs += "-$($kvp.Key) `"$($kvp.Value)`""
+  }
+  if ($args.Count -gt 0) {
+    $allArgs += $args
+  }
   $psi = New-Object System.Diagnostics.ProcessStartInfo
   $psi.FileName = "powershell.exe"
-  $psi.Arguments = "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`" $($MyInvocation.UnboundArguments -join ' ')"
+  $psi.Arguments = "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`" $allArgs"
   $psi.Verb = "runas"
   try {
     [System.Diagnostics.Process]::Start($psi) | Out-Null
@@ -37,6 +45,7 @@ if (-not $Developer -and -not ([Security.Principal.WindowsPrincipal] [Security.P
   }
   exit 0
 }
+
 
 Clear-Host
 Write-Host @'
@@ -235,6 +244,11 @@ function Invoke-OfficeInstallation {
         $officeFolder = Join-Path $systemDir.StartMenu "Microsoft Office"
         New-Item -Path $officeFolder -ItemType Directory -Force
         $officeShortcuts = @("Access", "Excel", "OneNote", "PowerPoint", "Publisher", "Word")
+        if (-not $NoOutlook) {
+          $officeShortcuts += "Outlook"
+        }
+        Start-Sleep -Seconds 1
+        Write-Host "D E B U G"
         Write-Host $officeFolder
         foreach ($s in $officeShortcuts) {
           $src = Join-Path $systemDir.StartMenu "$s.lnk"
@@ -245,15 +259,17 @@ function Invoke-OfficeInstallation {
         }
       }
       if ($RemoveToolsFolder) {
-        Write-Host "Removing Microsoft Office Tools folder"
+        Write-Host "Removing Microsoft Office Tools folder..."
         $officeToolsName = if ($Language -eq "en") { 
           "Microsoft Office Tools"
         } elseif ($Language -eq "de") {
           "Microsoft Office-Tools"
         } elseif ($Language -eq "pl") { 
-          "Narzędzia pakietu Microsoft Office"
+          "Narz$([char]0x119)dzia pakietu Microsoft Office"
         }
         $officeTools = Join-Path $systemDir.StartMenu $officeToolsName
+        Write-Host "D E B U G"
+        Write-Host $officeTools
         if (Test-Path $officeTools) {
           Remove-Item -Path $officeTools -Recurse -Force
         }
@@ -508,7 +524,7 @@ if (-not $Developer) {
   }
   if ($config.RestartSystem) {
     $cmds += "echo Restarting system..."
-    $cmds += "shutdown /r /t 3 /c `" `""
+    $cmds += "shutdown /r /t 5 /c `" `""
   }
   if ($cmds.Count -gt 0) {
     $cmds += "timeout /t 2 /nobreak >nul"
@@ -518,7 +534,18 @@ if (-not $Developer) {
   } else {
     Write-Host "No cleanup required, exiting."
   }
+  
+  # Clear recent items
+  if ($config.RemoveRecentItems) {
+    Remove-Item "$env:APPDATA\Microsoft\Windows\Recent\*" -Recurse -Force -ErrorAction SilentlyContinue
+    Remove-Item "$env:APPDATA\Microsoft\Windows\Recent\AutomaticDestinations\*" -Recurse -Force -ErrorAction SilentlyContinue
+    Remove-Item "$env:APPDATA\Microsoft\Windows\Recent\CustomDestinations\*" -Recurse -Force -ErrorAction SilentlyContinue
+  }
+
+  # Restart Explorer
+  Start-Sleep -Seconds 1
   Stop-Process -Name explorer -Force
+
 }
 
 if ($Developer -or $config.KeepOpen) {
