@@ -47,7 +47,7 @@ if (-not $Language -or $Language -eq "en") {
   $lngActivityHistory  = "Aktivit$([char]0xE4)tsverlauf"
   $lngBingSearchEngine = "Bing-Suchmaschine"
   $lngClearFiles       = "L$([char]0xF6)sche den Assistenten nach Abschluss der Einrichtung"
-  $lngDescription      = "Dieser Assistent schlie$([char]0xDF)t die Einrichtung von Windows 11 mit den unten empfohlenen Einstellungen ab. Sie k$([char]0xF6)nnen diese jetzt anpassen. Das System startet danach neu."
+  $lngDescription      = "Dieser Assistent schlie$([char]0xDF)t die Einrichtung von Windows 11 mit den unten empfohlenen `nEinstellungen ab. Sie k$([char]0xF6)nnen diese jetzt anpassen. Das System startet danach neu."
   $lngDisable          = "Deaktivieren"
   $lngExecute          = "Ausf$([char]0xFC)hren"
   $lngExitMessage      = "Sind Sie sicher, dass Sie die Einrichtung beenden m$([char]0xF6)chten?"
