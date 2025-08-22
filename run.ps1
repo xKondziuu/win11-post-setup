@@ -89,9 +89,66 @@ try {
 }
 Write-Host "Module import process completed."
 
+# Config typing
+class ConfigType {
+  [string]$_configVersion
+  [hashtable]$Activators
+  [CleanupType]$Cleanup
+  [int]$DefaultActivationTimeout
+  [int]$DefaultInstallationTimeout
+  [DisableBingType]$DisableBing
+  [DisableHistoryType]$DisableHistory
+  [DisableOnedriveType]$DisableOnedrive
+  [ForcePolishKeyboardType]$ForcePolishKeyboard
+  [InstallOfficeType]$InstallOffice
+  [InstallWinrarType]$InstallWinrar
+  [hashtable]$Installers
+}
+class ActivatorEntry {
+  [string]$File
+  [string]$Name
+}
+class CleanupType {
+  [bool]$AlwaysRestartExplorer
+  [bool]$KeepMainConsoleOpen
+  [bool]$KeepCleanupConsoleOpen
+  [bool]$RemoveRecentItems
+  [RestartSystemType]$RestartSystem
+}
+class RestartSystemType {
+  [bool]$Enabled
+  [int]$Timeout
+}
+class DisableBingType {
+  [bool]$BlockSearchApp
+  [bool]$DisableCortana
+}
+class DisableHistoryType {
+  [bool]$DisableActivityFeed
+}
+class DisableOnedriveType {
+  [bool]$RemoveForNewUsers
+  [bool]$RemoveFromSidebar
+}
+class ForcePolishKeyboardType {
+  [bool]$DisableLanguageBar
+}
+class InstallOfficeType {
+  [bool]$OrganizeShortcuts
+  [bool]$RemoveToolsFolder
+}
+class InstallWinrarType {
+  [bool]$OrganizeShortcuts
+}
+class InstallerEntry {
+  [string]$Args
+  [string]$File
+  [string]$Name
+}
+
 try {
   $configContent = Get-Content -Path $ConfigPath -Raw
-  $config = ConvertFrom-JsonC $configContent
+  [ConfigType]$config = ConvertFrom-JsonCTyped $configContent ([ConfigType])
 } catch {
   Write-Error "Failed to load config file `"$($ConfigPath)`": $_"
   exit 1
