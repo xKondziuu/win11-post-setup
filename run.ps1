@@ -104,10 +104,6 @@ class ConfigType {
   [InstallWinrarType]$InstallWinrar
   [hashtable]$Installers
 }
-class ActivatorEntry {
-  [string]$File
-  [string]$Name
-}
 class CleanupType {
   [bool]$AlwaysRestartExplorer
   [bool]$KeepMainConsoleOpen
@@ -140,15 +136,10 @@ class InstallOfficeType {
 class InstallWinrarType {
   [bool]$OrganizeShortcuts
 }
-class InstallerEntry {
-  [string]$Args
-  [string]$File
-  [string]$Name
-}
 
 try {
   $configContent = Get-Content -Path $ConfigPath -Raw
-  [ConfigType]$config = ConvertFrom-JsonCTyped $configContent ([ConfigType])
+  [ConfigType]$config = ConvertFrom-JsonC $configContent
 } catch {
   Write-Error "Failed to load config file `"$($ConfigPath)`": $_"
   exit 1
