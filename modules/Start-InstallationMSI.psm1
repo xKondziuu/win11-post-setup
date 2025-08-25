@@ -1,4 +1,5 @@
 function Start-InstallationMSI {
+  [CmdletBinding()]
   param (
     [Parameter(Mandatory = $true)]
     [ValidateScript({ Test-Path $_ -PathType Leaf })]
@@ -6,6 +7,7 @@ function Start-InstallationMSI {
     [Parameter(Mandatory = $true)]
     [int]$Timeout,
     [string]$Arguments = "/quiet /norestart", # default arguments for silent MSI installation
+    [switch]$AssumeSuccess,
     [switch]$FreezeWarning
   )
 
@@ -42,9 +44,16 @@ function Start-InstallationMSI {
   }
 
   if (-not $process.HasExited) {
+    # Required for buggy installers
+    if ($AssumeSuccess) {
+      $process.Kill()
+      return $true
+    }
     Write-Warning "Installation timed out after $Timeout seconds, killing process..."
     $process.Kill()
     Write-Warning "Installation of `"$Path`" failed, skipping."
     return $false
   }
 }
+
+Export-ModuleMember -Function Start-InstallationMSI
