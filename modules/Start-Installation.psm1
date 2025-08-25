@@ -1,4 +1,5 @@
 function Start-Installation {
+  [CmdletBinding()]
   param (
     [Parameter(Mandatory = $true)]
     [ValidateScript({ Test-Path $_ -PathType Leaf })]
@@ -44,7 +45,7 @@ function Start-Installation {
   }
 
   if (-not $process.HasExited) {
-    # Required for buggy Office installer
+    # Required for buggy installers
     if ($AssumeSuccess) {
       $process.Kill()
       return $true
@@ -55,3 +56,5 @@ function Start-Installation {
     return $false
   }
 }
+
+Export-ModuleMember -Function Start-Installation

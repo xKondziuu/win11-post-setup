@@ -1,5 +1,5 @@
 function Disable-Onedrive {
-  
+  [CmdletBinding()]
   param (
     [switch]$RemoveForNewUsers,
     [switch]$RemoveFromSidebar
@@ -99,3 +99,5 @@ function Disable-Onedrive {
   }
 
 }
+
+Export-ModuleMember -Function Disable-Onedrive

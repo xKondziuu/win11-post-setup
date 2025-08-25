@@ -1,4 +1,5 @@
 function Start-Activation {
+  [CmdletBinding()]
   param (
     [Parameter(Mandatory = $true)]
     [ValidateScript({ Test-Path $_ -PathType Leaf })]
@@ -46,3 +47,5 @@ function Start-Activation {
     return $false
   }
 }
+
+Export-ModuleMember -Function Start-Activation

@@ -1,4 +1,5 @@
 function Disable-History {
+  [CmdletBinding()]
   param (
     [switch]$DisableActivityFeed
   )
@@ -23,3 +24,5 @@ function Disable-History {
   Write-Host "Activity history disabled successfully" -ForegroundColor Green
 
 }
+
+Export-ModuleMember -Function Disable-History

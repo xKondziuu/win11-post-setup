@@ -1,4 +1,5 @@
 function Disable-Bing {
+  [CmdletBinding()]
   param (
     [switch]$BlockSearchApp,
     [switch]$DisableCortana
@@ -38,3 +39,5 @@ function Disable-Bing {
   Write-Host "Bing Search disabled successfully" -ForegroundColor Green
 
 }
+
+Export-ModuleMember -Function Disable-Bing
