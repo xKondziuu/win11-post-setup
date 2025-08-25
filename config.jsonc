@@ -1,7 +1,7 @@
 {
-  "_configVersion": "v1.0-beta.5", // DO NOT TOUCH
+  "_configVersion": "v1.0-beta.6", // DO NOT TOUCH
   "Activators": {
-    "officeohook":{
+    "officeohook": {
       "File": "Ohook_Activation.cmd",
       "Name": "Microsoft Office 2021"
     },
