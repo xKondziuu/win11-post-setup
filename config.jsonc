@@ -1,5 +1,5 @@
 {
-  "_configVersion": "v1.0-beta.7", // DO NOT TOUCH
+  "_configVersion": "v1.0", // DO NOT TOUCH
   "Activators": {
     "officeohook": {
       "File": "Ohook_Activation.cmd",
@@ -59,7 +59,7 @@
     },
     "firefox": {
       "Args": "/S",
-      "File": "firefox/Firefox_Setup_141.0.3_[LANG].exe",
+      "File": "firefox/Firefox_Setup_142.0_[LANG].exe",
       "Name": "Mozilla Firefox"
     },
     "msoffice": {
@@ -69,7 +69,7 @@
     },
     "powertoys": {
       "Args": "/silent",
-      "File": "powertoys/Microsoft_PowerToys_0.92.1_User_x64_[LANG].exe",
+      "File": "powertoys/PowerToysUserSetup-0.93.0-x64_[LANG].exe",
       "Name": "Microsoft PowerToys"
     },
     "sumatra": {
