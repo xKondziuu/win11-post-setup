@@ -1,6 +1,6 @@
 <#
   Windows 11 Post-Setup Wizard
-  Version: 1.0-beta.7
+  Version: 1.0
   Author: Konrad S.K.
   Repository: https://github.com/xKondziuu/win11-post-setup
 
@@ -300,7 +300,7 @@ function Invoke-WinrarInstallation {
     if (& Start-Installation @params) {
       if ($OrganizeShortcuts) {
         Write-Host "Organizing start menu shortcuts..."
-        Start-Sleep -Seconds 3
+        Start-Sleep -Seconds 5
         $name = "WinRAR"
         $folders = @(
           @{ Folder = (Join-Path $systemDir.StartMenu $name); Parent = $systemDir.StartMenu },
