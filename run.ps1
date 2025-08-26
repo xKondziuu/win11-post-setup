@@ -1,5 +1,6 @@
 <#
-  Windows 11 Post-Setup Script
+  Windows 11 Post-Setup Wizard
+  Version: 1.0-beta.7
   Author: Konrad S.K.
   Repository: https://github.com/xKondziuu/win11-post-setup
 
@@ -36,7 +37,7 @@ if (-not $Developer -and -not ([Security.Principal.WindowsPrincipal] [Security.P
   }
   $psi = New-Object System.Diagnostics.ProcessStartInfo
   $psi.FileName = "powershell.exe"
-  $psi.Arguments = "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`" $allArgs"
+  $psi.Arguments = "-ExecutionPolicy Bypass -File `"$PSCommandPath`" $allArgs"
   $psi.Verb = "runas"
   try {
     [System.Diagnostics.Process]::Start($psi) | Out-Null
@@ -45,7 +46,6 @@ if (-not $Developer -and -not ([Security.Principal.WindowsPrincipal] [Security.P
   }
   exit 0
 }
-
 
 Clear-Host
 Write-Host @'
@@ -171,6 +171,7 @@ function Invoke-Installation {
     $params.FreezeWarning = $true
   }
   if (-not $Developer) {
+    # Invoke function
     if (& $func @params) {
       Write-Host "$($installerInfo.Name) installation completed" -ForegroundColor Green
     } else {
@@ -199,6 +200,7 @@ function Invoke-Activation {
   }
   Write-ParameterSummary -Title "Start-Activation" -Parameters $params
   if (-not $Developer) {
+    # Invoke function
     if (& Start-Activation @params) {
       Write-Host "$($activatorInfo.Name) activation completed" -ForegroundColor Green
     } else {
@@ -370,6 +372,8 @@ Write-ParameterSummary -Title "$fileRenderer" -Parameters @{
   Version = $config._configVersion
 }
 Write-Host "Rendering UI..."
+
+# Invoke renderer script (TODO: Change into module)
 if ($Developer) {
   $json = powershell.exe -ExecutionPolicy Bypass -File $fileRenderer -Developer -Language $Language -LayoutPath "interface/layout.xaml" -RootDirectory $WorkingDirectory -Version $config._configVersion
 } else {
@@ -511,11 +515,12 @@ if ($null -ne $options.ActivateWindows) {
 Write-Host "Task execution completed, closing..." -ForegroundColor Green
 Start-Sleep -Seconds 1
 
+# Build cleanup script
 if (-not $Developer) {
   $cmds = @()
   if ($options.ClearFiles) {
-    $cmds += "echo Cleaning up..."
     $cmds += "cd .."
+    $cmds += "echo Cleaning up..."
     $cmds += "rd /s /q `"$PSScriptRoot`""
   }
   if ($config.RestartSystem.Enabled) {
@@ -546,7 +551,6 @@ if (-not $Developer) {
 
   # Restart Explorer
   if ($config.Cleanup.AlwaysRestartExplorer) {
-    Start-Sleep -Seconds 1
     Stop-Process -Name explorer -Force
   }
 

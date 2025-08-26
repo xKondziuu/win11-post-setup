@@ -112,7 +112,9 @@ $textDisable.Text             = $lngDisable
 $textExecute.Content          = $lngExecute
 $textHibernation.Content      = $lngHibernation
 $textInstall.Text             = $lngInstall
-$textVersion.Text             = "$Version"
+
+# Set the version text
+$textVersion.Text             = $Version
 
 # Office/Outlook/Ohook dependency logic
 function Update-OfficeInstallationDependencies {
@@ -195,7 +197,7 @@ $activateWindowsTsforge.Add_Unchecked({ Update-WindowsActivationDependencies; Se
 $installWinrar.Add_Checked({ Update-WinrarInstallationDependencies; Set-DisabledCheckboxesGray })
 $installWinrar.Add_Unchecked({ Update-WinrarInstallationDependencies; Set-DisabledCheckboxesGray })
 
-# Execute button action
+# Execute button click event
 $executeButton.Add_Click({
   $settings = @{
     ActivateOffice     = $activateOfficeOhook.IsChecked
