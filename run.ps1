@@ -523,9 +523,9 @@ if (-not $Developer) {
     $cmds += "echo Cleaning up..."
     $cmds += "rd /s /q `"$PSScriptRoot`""
   }
-  if ($config.RestartSystem.Enabled) {
+  if ($config.Cleanup.RestartSystem.Enabled) {
     $cmds += "echo Restarting system..."
-    $cmds += "shutdown /r /t $($config.RestartSystem.Timeout + 1) /c `" `""
+    $cmds += "shutdown /r /t $($config.Cleanup.RestartSystem.Timeout + 1) /c `" `""
   }
   if ($cmds.Count -gt 0) {
     $cmds += "timeout /t 2 /nobreak >nul"
